@@ -1,9 +1,9 @@
 # Stick RPG1.5
-### Created using JTWOD Engine
+### Created using JTwoD Engine
 
 **Special thanks to XGen Studios for their awesome work over the years!**
 
-This game was created to get me reinspired in Java game code, as well as help along the development of the JTWOD Engine, found here: 
+This game was created to get me reinspired in Java game code, as well as help along the development of the JTwoD Engine, found here: 
 [JTWOD](https://github.com/nathan-fiscaletti/jtwod)
 
 
