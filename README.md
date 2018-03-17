@@ -11,4 +11,4 @@ As of now, all the resources are taken from the original game, but my own origin
 
 The rest of the project with a build script so others can play will come soon!
 
-Special thanks to Nathan Fiscaletti for the help!
+Special thanks to [Nathan Fiscaletti](https://github.com/nathan-fiscaletti) for the help!
