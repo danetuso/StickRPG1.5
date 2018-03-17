@@ -1,4 +1,4 @@
-# Stick RPG1.5
+# StickRPG 1.5
 ### Created using JTwoD Engine
 
 **Special thanks to XGen Studios for their awesome work over the years!**
@@ -12,3 +12,13 @@ As of now, all the resources are taken from the original game, but my own origin
 The rest of the project with a build script so others can play will come soon!
 
 Special thanks to Nathan Fiscaletti for the help!
+
+### Building StickRPG 1.5
+
+To build the game, execute the provided build script as follows:
+
+```shell
+$ ./build.sh
+```
+
+A file will be output named `StickRPG_1.5.jar`.
