@@ -1,5 +1,5 @@
-#Stick RPG1.5
-###Created using JTWOD Engine
+# Stick RPG1.5
+### Created using JTWOD Engine
 
 **Special thanks to XGen Studios for their awesome work over the years!**
 
