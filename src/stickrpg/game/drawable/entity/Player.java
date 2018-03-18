@@ -75,24 +75,24 @@ public class Player extends Entity<StickEngine>
         super(position, scene.getParentEngine().getTextureGroup().getTexture("Player"), scene);
 
         //temporary stats
-        this.money = 1000000;
-        this.strength = 200;
-        this.intelligence = 200;
-        this.charm = 250;
-        this.health = 200;
-        this.karma = 20;
+        this.money = 100;
+        this.strength = 8;
+        this.intelligence = 8;
+        this.charm = 8;
+        this.health = 20;
+        this.karma = 1;
 
         //temporary inventory
         this.smokes = 0;
         this.skateboard = false;
-        this.pills = 2;
+        this.pills = 0;
         this.alarm = false;
-        this.bottles = 12;
+        this.bottles = 0;
         this.gun = false;
         this.knife = false;
         this.cell = false;
-        this.coke = 6;
-        this.bullets = 6;
+        this.coke = 0;
+        this.bullets = 0;
 
         this.gCoins = false;
 

@@ -20,7 +20,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class StickScene extends Scene<StickEngine>
 {
-    private int speed = 5;
+    private int speed = 3;
+    private boolean skating;
 
     public StickBasicMap mapObject;
 
@@ -145,10 +146,23 @@ public class StickScene extends Scene<StickEngine>
         }
         else
         {
-            ec.mansionBuilding.setVisible(false);
-            ec.castleBuilding.setVisible(false);
-            displayBackgroundForDoor(doorType);
-            ec.displayButtonsForDoor(doorType);
+            if(doorType != DoorTypeEnum.KID)
+            {
+                ec.mansionBuilding.setVisible(false);
+                ec.castleBuilding.setVisible(false);
+                displayBackgroundForDoor(doorType);
+                ec.displayButtonsForDoor(doorType);
+            }
+            else
+            {
+                if(!ec.player.mansion && !ec.player.castle)
+                {
+                    ec.mansionBuilding.setVisible(false);
+                    ec.castleBuilding.setVisible(false);
+                    displayBackgroundForDoor(doorType);
+                    ec.displayButtonsForDoor(doorType);
+                }
+            }
         }
     }
 
@@ -179,14 +193,22 @@ public class StickScene extends Scene<StickEngine>
                 break;
             }
             case KID:{
-                stats.get(0).setText("Hey Man! Do you have any smokes? I'm old");
-                stats.get(1).setText("enough to smoke, it's just... I.. uh.. er..");
-                stats.get(2).setText("forgot my ID at home!");
-                stats.get(3).setText("Please?");
-                stats.get(0).setVisible(true);
-                stats.get(1).setVisible(true);
-                stats.get(2).setVisible(true);
-                stats.get(3).setVisible(true);
+                if(!this.getEntityController(StickEntityController.class).player.skateboard)
+                {
+                    stats.get(0).setText("Hey Man! Do you have any smokes? I'm old");
+                    stats.get(1).setText("enough to smoke, it's just... I.. uh.. er..");
+                    stats.get(2).setText("forgot my ID at home!");
+                    stats.get(3).setText("Please?");
+                    stats.get(0).setVisible(true);
+                    stats.get(1).setVisible(true);
+                    stats.get(2).setVisible(true);
+                    stats.get(3).setVisible(true);
+                }
+                else
+                {
+                    stats.get(1).setText("Hey man, I hope you are enjoying that board.");
+                    stats.get(1).setVisible(true);
+                }
                 break;
             }
             case HOMELESS:{
@@ -1581,8 +1603,10 @@ public class StickScene extends Scene<StickEngine>
     public final void update()
     {
         //temp
-        if(this.getEntityController(StickEntityController.class).player.skateboard)
-            speed = 10;
+        if(this.getEntityController(StickEntityController.class).player.skateboard && this.skating)
+            speed = 5;
+        else
+            speed = 3;
 
         if(!(mapObject.map.getPosition().getY() + speed > 0 ))
             if(up)
@@ -1720,43 +1744,48 @@ public class StickScene extends Scene<StickEngine>
             if(!textBox.getText().equals(""))
                 textBox.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(textBox.getText().replace(",", ""))));
         }
-        if(KeyEvent.VK_UP == e.getKeyCode())
+        if(KeyEvent.VK_UP == e.getKeyCode() || KeyEvent.VK_W == e.getKeyCode())
         {
             up = false;
         }
-        if(KeyEvent.VK_DOWN == e.getKeyCode())
+        if(KeyEvent.VK_DOWN == e.getKeyCode() || KeyEvent.VK_S == e.getKeyCode())
         {
             down = false;
         }
-        if(KeyEvent.VK_LEFT == e.getKeyCode())
+        if(KeyEvent.VK_LEFT == e.getKeyCode() || KeyEvent.VK_A == e.getKeyCode())
         {
             left = false;
         }
-        if(KeyEvent.VK_RIGHT == e.getKeyCode())
+        if(KeyEvent.VK_RIGHT == e.getKeyCode() || KeyEvent.VK_D == e.getKeyCode())
         {
             right = false;
+        }
+        if(KeyEvent.VK_SHIFT == e.getKeyCode()) {
+            this.skating = false;
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e)
     {
-        if(KeyEvent.VK_UP == e.getKeyCode())
+        if(KeyEvent.VK_UP == e.getKeyCode() || KeyEvent.VK_W == e.getKeyCode())
         {
             up = true;
         }
-        if(KeyEvent.VK_DOWN == e.getKeyCode())
+        if(KeyEvent.VK_DOWN == e.getKeyCode() || KeyEvent.VK_S == e.getKeyCode())
         {
             down = true;
         }
-        if(KeyEvent.VK_LEFT == e.getKeyCode())
+        if(KeyEvent.VK_LEFT == e.getKeyCode() || KeyEvent.VK_A == e.getKeyCode())
         {
             left = true;
         }
-        if(KeyEvent.VK_RIGHT == e.getKeyCode())
+        if(KeyEvent.VK_RIGHT == e.getKeyCode() || KeyEvent.VK_D == e.getKeyCode())
         {
             right = true;
         }
+        if(KeyEvent.VK_SHIFT == e.getKeyCode()) {
+            this.skating = true;
+        }
     }
-
 }
