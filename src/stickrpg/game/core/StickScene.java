@@ -40,7 +40,6 @@ public class StickScene extends Scene<StickEngine>
     //Stats
     public ArrayList<Text<StickEngine>> stats;
     private ArrayList<Vector> OGStatsPos;
-    private ArrayList<MenuButton> lastClickable;
     private Color statsColor = Color.BLACK;
     private Font statsFont = new Font("Arial", Font.BOLD, 16);
 
@@ -123,7 +122,6 @@ public class StickScene extends Scene<StickEngine>
 
         if(doorType == null)
         {
-            ec.eb.clickable = false;
             ec.hideAllButtons();
 
             for(Background bg : backgrounds)
@@ -140,18 +138,21 @@ public class StickScene extends Scene<StickEngine>
                 ec.mansionBuilding.setVisible(true);
             if(ec.player.castle)
                 ec.castleBuilding.setVisible(true);
+            stats.get(0).setFont(statsFont);
+            stats.get(1).setFont(statsFont);
+            stats.get(2).setFont(statsFont);
+            stats.get(3).setFont(statsFont);
         }
         else
         {
             ec.mansionBuilding.setVisible(false);
             ec.castleBuilding.setVisible(false);
-            ec.eb.clickable = true;
             displayBackgroundForDoor(doorType);
             ec.displayButtonsForDoor(doorType);
         }
     }
 
-    private void displayBackgroundForDoor(DoorTypeEnum type)
+    public void displayBackgroundForDoor(DoorTypeEnum type)
     {
         switch(type)
         {
@@ -174,10 +175,7 @@ public class StickScene extends Scene<StickEngine>
                 stats.get(2).setVisible(true);
                 stats.get(3).setVisible(true);
                 if(this.getEntityController(StickEntityController.class).player.gun)
-                {
                     this.getEntityController(StickEntityController.class).rob.setVisible(true);
-                    this.getEntityController(StickEntityController.class).rob.clickable = true;
-                }
                 break;
             }
             case KID:{
@@ -205,6 +203,10 @@ public class StickScene extends Scene<StickEngine>
                 stats.get(1).setVisible(true);
                 stats.get(2).setVisible(true);
                 stats.get(3).setVisible(true);
+                stats.get(0).setFont(new Font(statsFont.getName(), statsFont.getStyle(), statsFont.getSize()-2));
+                stats.get(1).setFont(new Font(statsFont.getName(), statsFont.getStyle(), statsFont.getSize()-2));
+                stats.get(2).setFont(new Font(statsFont.getName(), statsFont.getStyle(), statsFont.getSize()-2));
+                stats.get(3).setFont(new Font(statsFont.getName(), statsFont.getStyle(), statsFont.getSize()-2));
                 break;
             }
             case MCD:{
@@ -269,8 +271,9 @@ public class StickScene extends Scene<StickEngine>
                 backgrounds.get(7).setVisible(true);
                 this.getEntityController(
                         StickEntityController.class).eb.setPosition(
-                        this.getEntityController(StickEntityController.class).eb.getPosition().plusX(45)
-                );
+                            this.getEntityController(StickEntityController.class).eb.getPosition().plus(new Vector(104,-196))
+                        );
+
                 break;
             }
             case PAWN:{
@@ -443,8 +446,6 @@ public class StickScene extends Scene<StickEngine>
         ec.hideAllButtons();
 
         ec.ok.setVisible(true);
-        ec.ok.clickable = true;
-        ec.eb.clickable = false;
 
         textBox.setVisible(false);
         textBox.setText("0");
@@ -581,10 +582,7 @@ public class StickScene extends Scene<StickEngine>
                 menuTitle.setVisible(true);
                 adjustStatTextForTitle(true);
                 this.getEntityController(StickEntityController.class).ok.setVisible(false);
-                this.getEntityController(StickEntityController.class).ok.clickable = false;
-
                 this.getEntityController(StickEntityController.class).eb.setVisible(true);
-                this.getEntityController(StickEntityController.class).eb.clickable = true;
                 break;
             }
             //People
@@ -788,7 +786,6 @@ public class StickScene extends Scene<StickEngine>
                     stats.get(1).setVisible(true);
                     stats.get(2).setVisible(true);
                     stats.get(3).setVisible(true);
-                    this.getEntityController(StickEntityController.class).loanAccept.clickable = true;
                     this.getEntityController(StickEntityController.class).loanAccept.setVisible(true);
                 }
                 else
@@ -798,27 +795,22 @@ public class StickScene extends Scene<StickEngine>
                              + NumberFormat.getNumberInstance(Locale.US).format(player.loan)
                              + "?");
                     stats.get(1).setVisible(true);
-                    this.getEntityController(StickEntityController.class).loanAccept.clickable = true;
                     this.getEntityController(StickEntityController.class).loanAccept.setVisible(true);
                 }
 
                 break;
             }
             case BHOUSE:{
-                menuTitle.setText("Property for sale");
-                menuTitle.setVisible(true);
-                ec.bApt.clickable = true;
-                ec.penthouse.clickable = true;
-                ec.mansion.clickable = true;
-                ec.castle.clickable = true;
-                if(!player.bApt)
-                    ec.bApt.setVisible(true);
-                if(!player.penthouse)
-                    ec.penthouse.setVisible(true);
-                if(!player.mansion)
-                    ec.mansion.setVisible(true);
-                if(!player.castle)
-                    ec.castle.setVisible(true);
+                    menuTitle.setText("Property for sale");
+                    menuTitle.setVisible(true);
+                    if(!player.bApt)
+                        ec.bApt.setVisible(true);
+                    if(!player.penthouse)
+                        ec.penthouse.setVisible(true);
+                    if(!player.mansion)
+                        ec.mansion.setVisible(true);
+                    if(!player.castle)
+                        ec.castle.setVisible(true);
                 break;
             }
             //Home
@@ -1043,19 +1035,6 @@ public class StickScene extends Scene<StickEngine>
         }
         menuTitle.setText(lMt);
         menuTitle.setVisible(lMtv);
-        for(MenuButton mb : lastClickable)
-        {
-            mb.clickable = true;
-        }
-
-        this.getEntityController(StickEntityController.class).eb.clickable = true;
-        this.getEntityController(StickEntityController.class).ok.clickable = false;
-        this.getEntityController(StickEntityController.class).accept.clickable = false;
-
-        this.getEntityController(StickEntityController.class).bApt.clickable = false;
-        this.getEntityController(StickEntityController.class).penthouse.clickable = false;
-        this.getEntityController(StickEntityController.class).mansion.clickable = false;
-        this.getEntityController(StickEntityController.class).castle.clickable = false;
 
         for(MenuButton m : lastVisibleButtons)
         {
@@ -1068,7 +1047,6 @@ public class StickScene extends Scene<StickEngine>
         this.getEntityController(StickEntityController.class).castle.setVisible(false);
 
         this.getEntityController(StickEntityController.class).accept.setVisible(false);
-        this.getEntityController(StickEntityController.class).loanAccept.clickable = false;
         this.getEntityController(StickEntityController.class).loanAccept.setVisible(false);
 
         backgrounds.get(14).setVisible(false);
@@ -1079,17 +1057,20 @@ public class StickScene extends Scene<StickEngine>
             if(this.getEntityController(StickEntityController.class).player.loanday == -1)
                 l = "None";
             else
-                l = "Owe $" + NumberFormat.getNumberInstance(Locale.US).format(this.getEntityController(StickEntityController.class).player.loan) + " by day " + (this.getEntityController(StickEntityController.class).player.loanday + 15);
+                l = "Owe $"
+                    + NumberFormat.getNumberInstance(Locale.US).format(
+                            this.getEntityController(StickEntityController.class).player.loan
+                    )
+                    + " by day "
+                    + (this.getEntityController(StickEntityController.class).player.loanday + 15);
 
             stats.get(3).setText("Current loan status: " + l);
-
         }
         if(backgrounds.get(6).isVisible())
         {
             if(this.getEntityController(StickEntityController.class).player.corpTier > 0)
             {
                 this.getEntityController(StickEntityController.class).work.setVisible(true);
-                this.getEntityController(StickEntityController.class).work.clickable = true;
                 adjustStatTextForTitle(false);
             }
         }
@@ -1438,7 +1419,6 @@ public class StickScene extends Scene<StickEngine>
         else
         {
             int rand = ThreadLocalRandom.current().nextInt(1, 11);
-            //add if stats
             if(player.strength + (player.karma * rand) < 200)
             {
                 player.setMoney(0);
@@ -1492,14 +1472,9 @@ public class StickScene extends Scene<StickEngine>
                 stats.get(2).setText("$" + a2 + " for " + b + " Bottles");
                 stats.get(3).setText("Accept?");
 
-                this.getEntityController(StickEntityController.class).accept.clickable = true;
                 this.getEntityController(StickEntityController.class).accept.setVisible(true);
-
                 this.getEntityController(StickEntityController.class).ok.setVisible(false);
-                this.getEntityController(StickEntityController.class).ok.clickable = false;
-
                 this.getEntityController(StickEntityController.class).eb.setVisible(true);
-                this.getEntityController(StickEntityController.class).eb.clickable = true;
             }
         }
         stats.get(0).setVisible(true);
@@ -1520,7 +1495,6 @@ public class StickScene extends Scene<StickEngine>
             lastStats.add(t.getText());
             lastStatsVis.add(t.isVisible());
         }
-        lastClickable = this.getEntityController(StickEntityController.class).getClickableButtons();
         lMt = menuTitle.getText();
         lMtv = menuTitle.isVisible();
     }

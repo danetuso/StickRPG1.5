@@ -145,20 +145,15 @@ public class StickEntityController extends EntityController<StickEngine>
                 e.setPosition(e.getPosition().plus(v));
                 if(((MenuButton) e).bt != null)
                     ((MenuButton) e).bt.setPosition(((MenuButton) e).bt.getPosition().plus(v).plusY(5));
-                    //((MenuButton) e).bt.setPosition(e.getPosition().plus(45,10).plus(v));
                 if(((MenuButton) e).bt2 != null)
                     ((MenuButton) e).bt2.setPosition(((MenuButton) e).bt2.getPosition().plus(v).plusY(5));
-                    //((MenuButton) e).bt2.setPosition(e.getPosition().plus(45,40-14).plus(v));
             }
     }
 
     public final void displayButtonsForDoor(DoorTypeEnum type)
     {
         for(MenuButton b : type.getDoorButtons(this, type))
-        {
             b.setVisible(true);
-            b.clickable = true;
-        }
     }
 
     private void initPeople()
@@ -1000,19 +995,7 @@ public class StickEntityController extends EntityController<StickEngine>
     {
         for(Entity e : this.getAllEntities())
             if(e instanceof MenuButton)
-            {
                 e.setVisible(false);
-                ((MenuButton) e).clickable = false;
-            }
-    }
-
-    public final ArrayList<MenuButton> getClickableButtons()
-    {
-        ArrayList<MenuButton> mb = new ArrayList<>();
-        for(Entity e : this.getAllEntities())
-            if(e instanceof MenuButton && ((MenuButton) e).clickable)
-                mb.add((MenuButton)e);
-        return mb;
     }
 
     public final ArrayList<MenuButton> getVisibleMenuButtons()
