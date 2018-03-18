@@ -218,8 +218,8 @@ public class StickScene extends Scene<StickEngine>
             }
             case BAR:{
                 addToMenuItemPos(new Vector(-4,6));
-                stats.get(1).setText("Ello', I'm Sticky. What's yer' poison, mate?");
-                stats.get(1).setVisible(true);
+                stats.get(0).setText("Ello', I'm Sticky. What's yer' poison, mate?");
+                stats.get(0).setVisible(true);
                 backgrounds.get(2).setVisible(true);
                 break;
             }
@@ -588,10 +588,9 @@ public class StickScene extends Scene<StickEngine>
             //People
             case GIVESMOKES:{
                 menuTitle.setText("Skateboard Added!");
-                stats.get(0).setText("Wow thanks mister take my skateboard.");
+                stats.get(2).setText("Wow thanks mister take my skateboard.");
                 menuTitle.setVisible(true);
-                stats.get(0).setVisible(true);
-                adjustStatTextForTitle(true);
+                stats.get(2).setVisible(true);
                 break;
             }
             case COINS: {
@@ -599,14 +598,13 @@ public class StickScene extends Scene<StickEngine>
                 {
                     menuTitle.setText("+6 Charm");
                     menuTitle.setVisible(true);
-                    adjustStatTextForTitle(true);
                 }
 
-                stats.get(1).setText("Why thank you! What a charming gesture...");
-                stats.get(2).setText("*mumble*");
+                stats.get(2).setText("Why thank you! What a charming gesture...");
+                stats.get(3).setText("*mumble*");
 
-                stats.get(1).setVisible(true);
                 stats.get(2).setVisible(true);
+                stats.get(3).setVisible(true);
 
                 break;
             }
@@ -1074,6 +1072,16 @@ public class StickScene extends Scene<StickEngine>
                 adjustStatTextForTitle(false);
             }
         }
+        for(int i = 0; i < stats.size(); i++)
+        {
+            if(stats.get(i).getText().equals("It's Too Late! You're exhausted!"))
+            {
+                stats.get(i).setText("");
+                stats.get(i).setColor(statsColor);
+            }
+        }
+        if(!menuTitle.isVisible())
+            adjustStatTextForTitle(false);
     }
 
     /* Init Functions */

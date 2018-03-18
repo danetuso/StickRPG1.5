@@ -430,7 +430,7 @@ public class MenuButton extends Entity<StickEngine>
                 {
                     player.addMoney(-400);
                     player.coke++;
-                    sc.showResponse(ButtonTypeEnum.COKE);
+                    //sc.showResponse(ButtonTypeEnum.COKE);
                 }
                 break;
             }
@@ -662,7 +662,7 @@ public class MenuButton extends Entity<StickEngine>
                 {
                     player.addMoney(-30);
                     player.bottles++;
-                    sc.showResponse(ButtonTypeEnum.BUYB);
+                    //sc.showResponse(ButtonTypeEnum.BUYB);
                 }
                 break;
             }
@@ -675,10 +675,10 @@ public class MenuButton extends Entity<StickEngine>
                 }
                 else
                 {
-                    sc.stats.get(3).setText("It's Too Late! You're exhausted!");
-                    sc.stats.get(3).setColor(Color.RED);
-                    sc.stats.get(3).setVisible(true);
-                    sc.stats.get(3).setPosition(new Vector(0,sc.stats.get(3).getPosition().getY() + 10));
+                    sc.stats.get(1).setText("It's Too Late! You're exhausted!");
+                    sc.stats.get(1).setColor(Color.RED);
+                    sc.stats.get(1).setVisible(true);
+                    //sc.stats.get(1).setPosition(new Vector(0,sc.stats.get(3).getPosition().getY() + 10));
                 }
                 break;
             }
