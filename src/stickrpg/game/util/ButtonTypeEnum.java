@@ -71,5 +71,8 @@ public enum ButtonTypeEnum
     DEPOSIT,
     WITHDRAW,
     LOAN,
-    LOANACCEPT;
+    LOANACCEPT,
+    WNEWS,
+    WFITNESS,
+    WDATING;
 }

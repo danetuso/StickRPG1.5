@@ -95,6 +95,10 @@ public class StickEntityController extends EntityController<StickEngine>
     public MenuButton NV;
     public MenuButton accept;
 
+    public MenuButton wNews;
+    public MenuButton wFitness;
+    public MenuButton wDating;
+
     public MenuButton rob;
 
     //Inventory
@@ -390,10 +394,44 @@ public class StickEntityController extends EntityController<StickEngine>
                 this.getParentScene(),
                 ButtonTypeEnum.TV,
                 3,
+                2,
                 "TV",
                 "$2,500 (+2 INT)"
         );
         this.spawnEntity(tv);
+
+        wNews = new MenuButton(
+                this.getParentEngine().spriteSheet.getTexture(7,6),
+                this.getParentEngine().spriteSheet.getTexture(8,6),
+                this.getParentScene(),
+                ButtonTypeEnum.WNEWS,
+                5,
+                2,
+                "News Channel"
+        );
+        this.spawnEntity(wNews);
+
+        wFitness = new MenuButton(
+                this.getParentEngine().spriteSheet.getTexture(7,6),
+                this.getParentEngine().spriteSheet.getTexture(8,6),
+                this.getParentScene(),
+                ButtonTypeEnum.WFITNESS,
+                6,
+                2,
+                "Fitness channel"
+        );
+        this.spawnEntity(wFitness);
+
+        wDating = new MenuButton(
+                this.getParentEngine().spriteSheet.getTexture(7,6),
+                this.getParentEngine().spriteSheet.getTexture(8,6),
+                this.getParentScene(),
+                ButtonTypeEnum.WDATING,
+                7,
+                2,
+                "Dating Channel"
+        );
+        this.spawnEntity(wDating);
 
         satellite = new MenuButton(
                 this.getParentEngine().spriteSheet.getTexture(5,5),

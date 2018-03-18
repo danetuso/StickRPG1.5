@@ -79,7 +79,7 @@ public class Player extends Entity<StickEngine>
         this.strength = 8;
         this.intelligence = 8;
         this.charm = 8;
-        this.health = 20;
+        this.health = this.strength;
         this.karma = 1;
 
         //temporary inventory
@@ -93,6 +93,7 @@ public class Player extends Entity<StickEngine>
         this.cell = false;
         this.coke = 0;
         this.bullets = 0;
+        this.car = false;
 
         this.gCoins = false;
 

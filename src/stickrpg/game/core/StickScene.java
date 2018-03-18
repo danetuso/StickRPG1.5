@@ -22,6 +22,7 @@ public class StickScene extends Scene<StickEngine>
 {
     private int speed = 3;
     private boolean skating;
+    private boolean driving;
 
     public StickBasicMap mapObject;
 
@@ -747,44 +748,68 @@ public class StickScene extends Scene<StickEngine>
                 stats.get(1).setVisible(true);
                 break;
             }
+            //FSTORE
             case BED:{
                 stats.get(1).setText("+10 Health / Sleep");
                 stats.get(1).setVisible(true);
                 break;
             }
-            //FSTORE
             case TV:{
-                stats.get(1).setText("Lets you watch the news! Great, mainstream media!");
+                menuTitle.setText("+2 Intelligence");
+                menuTitle.setVisible(true);
+                stats.get(1).setText("You watch the news for a couple hours.");
+                stats.get(2).setText("Looks like you learned something new.");
                 stats.get(1).setVisible(true);
-                break;
-            }
-            case COMPUTER:{
-                stats.get(1).setText("Essential for everyone!");
-                stats.get(1).setVisible(true);
-                break;
-            }
-            case AC:{
-                stats.get(1).setText("+10 Health / Sleep");
-                stats.get(1).setVisible(true);
-                break;
-            }
-            case TREADMILL:{
-                stats.get(1).setText("+1 Strength / Sleep");
-                stats.get(1).setVisible(true);
+                stats.get(2).setVisible(true);
+                adjustStatTextForTitle(true);
                 break;
             }
             case SATELLITE:{
-                stats.get(1).setText("Lets you watch all the channels!");
+                stats.get(1).setText("What would you like to watch?");
                 stats.get(1).setVisible(true);
+                ec.wDating.setVisible(true);
+                ec.wNews.setVisible(true);
+                ec.wFitness.setVisible(true);
                 break;
             }
-            case PEDIA:{
-                stats.get(1).setText("+1 Intelligence / Sleep");
+            case WNEWS:{
+                menuTitle.setText("+2 Intelligence");
+                menuTitle.setVisible(true);
+                stats.get(1).setText("You watch the news for a couple hours.");
+                stats.get(2).setText("Looks like you learned something new.");
                 stats.get(1).setVisible(true);
+                stats.get(2).setVisible(true);
+                adjustStatTextForTitle(true);
+                ec.ok.setVisible(false);
+                ec.eb.setVisible(true);
                 break;
             }
-            case MINIBAR:{
-                stats.get(1).setText("+1 Charm / Sleep");
+            case WFITNESS:{
+                menuTitle.setText("+2 Strength");
+                menuTitle.setVisible(true);
+                stats.get(1).setText("You follow a workout video for a couple hours.");
+                stats.get(2).setText("Looks like you made some gains.");
+                stats.get(1).setVisible(true);
+                stats.get(2).setVisible(true);
+                adjustStatTextForTitle(true);
+                ec.ok.setVisible(false);
+                ec.eb.setVisible(true);
+                break;
+            }
+            case WDATING:{
+                menuTitle.setText("+2 Charm");
+                menuTitle.setVisible(true);
+                stats.get(1).setText("You feel sorry for yourself for 2 hours straight.");
+                stats.get(2).setText("You reflected and made positive change!");
+                stats.get(1).setVisible(true);
+                stats.get(2).setVisible(true);
+                adjustStatTextForTitle(true);
+                ec.ok.setVisible(false);
+                ec.eb.setVisible(true);
+                break;
+            }
+            case COMPUTER:{
+                stats.get(1).setText("Stock Market functionality coming soon!");
                 stats.get(1).setVisible(true);
                 break;
             }
@@ -1068,6 +1093,10 @@ public class StickScene extends Scene<StickEngine>
 
         this.getEntityController(StickEntityController.class).accept.setVisible(false);
         this.getEntityController(StickEntityController.class).loanAccept.setVisible(false);
+
+        this.getEntityController(StickEntityController.class).wNews.setVisible(false);
+        this.getEntityController(StickEntityController.class).wFitness.setVisible(false);
+        this.getEntityController(StickEntityController.class).wDating.setVisible(false);
 
         backgrounds.get(14).setVisible(false);
         if(backgrounds.get(4).isVisible())
@@ -1605,6 +1634,8 @@ public class StickScene extends Scene<StickEngine>
         //temp
         if(this.getEntityController(StickEntityController.class).player.skateboard && this.skating)
             speed = 5;
+        else if(this.getEntityController(StickEntityController.class).player.car && this.driving)
+            speed = 7;
         else
             speed = 3;
 
@@ -1740,6 +1771,10 @@ public class StickScene extends Scene<StickEngine>
             if(KeyEvent.VK_BACK_SPACE == e.getKeyCode())
             {
                 textBox.setText(textBox.getText().substring(0,textBox.getText().length()-1));
+            }
+            if(KeyEvent.VK_C == e.getKeyCode() && this.getEntityController(StickEntityController.class).player.car)
+            {
+                this.driving = !this.driving;
             }
             if(!textBox.getText().equals(""))
                 textBox.setText(NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(textBox.getText().replace(",", ""))));

@@ -587,7 +587,72 @@ public class MenuButton extends Entity<StickEngine>
                     player.tv = true;
                     ec.tv.setVisible(false);
                     ec.tv.attr = "";
+                    ec.tv.bt2.setVisible(false);
                     ec.tv.bt.setText("Watch TV");
+                }
+                else if(player.addTime(timeTaken) != -1 && player.tv && !player.satellite)
+                {
+                    player.intelligence += 2;
+                    sc.showResponse(ButtonTypeEnum.TV);
+                }
+                else if(player.addTime(timeTaken) != -1 && player.tv && player.satellite)
+                {
+                    sc.showResponse(ButtonTypeEnum.SATELLITE);
+                }
+                else
+                {
+                    if(player.tv)
+                    {
+                        sc.stats.get(3).setText("It's Too Late! You're exhausted!");
+                        sc.stats.get(3).setColor(Color.RED);
+                        sc.stats.get(3).setVisible(true);
+                        sc.stats.get(3).setPosition(new Vector(0,sc.stats.get(3).getPosition().getY() + 10));
+                    }
+                }
+                break;
+            }
+            case WNEWS:{
+                if(player.addTime(timeTaken) != -1)
+                {
+                    player.intelligence += 2;
+                    sc.showResponse(ButtonTypeEnum.WNEWS);
+                }
+                else
+                {
+                    sc.stats.get(3).setText("It's Too Late! You're exhausted!");
+                    sc.stats.get(3).setColor(Color.RED);
+                    sc.stats.get(3).setVisible(true);
+                    sc.stats.get(3).setPosition(new Vector(0,sc.stats.get(3).getPosition().getY() + 10));
+                }
+                break;
+            }
+            case WFITNESS:{
+                if(player.addTime(timeTaken) != -1)
+                {
+                    player.addStrength(2);
+                    sc.showResponse(ButtonTypeEnum.WFITNESS);
+                }
+                else
+                {
+                    sc.stats.get(3).setText("It's Too Late! You're exhausted!");
+                    sc.stats.get(3).setColor(Color.RED);
+                    sc.stats.get(3).setVisible(true);
+                    sc.stats.get(3).setPosition(new Vector(0,sc.stats.get(3).getPosition().getY() + 10));
+                }
+                break;
+            }
+            case WDATING:{
+                if(player.addTime(timeTaken) != -1)
+                {
+                    player.charm += 2;
+                    sc.showResponse(ButtonTypeEnum.WDATING);
+                }
+                else
+                {
+                    sc.stats.get(3).setText("It's Too Late! You're exhausted!");
+                    sc.stats.get(3).setColor(Color.RED);
+                    sc.stats.get(3).setVisible(true);
+                    sc.stats.get(3).setPosition(new Vector(0,sc.stats.get(3).getPosition().getY() + 10));
                 }
                 break;
             }
@@ -598,7 +663,20 @@ public class MenuButton extends Entity<StickEngine>
                     player.computer = true;
                     ec.computer.setVisible(false);
                     ec.computer.attr = "";
+                    ec.computer.bt2.setVisible(false);
                     ec.computer.bt.setText("Use Computer");
+                }
+                else if(player.addTime(timeTaken) != -1 && player.computer)
+                    sc.showResponse(ButtonTypeEnum.COMPUTER);
+                else
+                {
+                    if(player.computer)
+                    {
+                        sc.stats.get(3).setText("It's Too Late! You're exhausted!");
+                        sc.stats.get(3).setColor(Color.RED);
+                        sc.stats.get(3).setVisible(true);
+                        sc.stats.get(3).setPosition(new Vector(0,sc.stats.get(3).getPosition().getY() + 10));
+                    }
                 }
                 break;
             }
