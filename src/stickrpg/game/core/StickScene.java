@@ -55,6 +55,10 @@ public class StickScene extends Scene<StickEngine>
     //Bank
     public TextBox textBox;
 
+    public TextButton cancel;
+    public TextButton withdraw;
+    public TextButton deposit;
+
     public StickScene(String name, StickEngine engine)
     {
         super(name, engine, null, true);
@@ -73,6 +77,19 @@ public class StickScene extends Scene<StickEngine>
 
         //Menu
         menuBackground = new MenuBackground(3, this.getParentEngine(), this);
+
+        cancel = new TextButton(new Vector(100,100), "Cancel", 70, 20, this.getParentEngine(), this, ButtonTypeEnum.CANCEL);
+        withdraw = new TextButton(new Vector(
+            this.menuBackground.getPosition().getX()
+                    + this.menuBackground.getDimensions().getWidth() / 2 + 15,
+            this.menuBackground.getPosition().getY()
+                    + this.menuBackground.getDimensions().getHeight() - 150
+        ).plusX(45).plusY(3), "WITHDRAW", 88, 29, this.getParentEngine(), this, ButtonTypeEnum.WITHDRAW);
+        deposit = new TextButton(new Vector(
+                this.menuBackground.getPosition().getX() + 15,
+                this.menuBackground.getPosition().getY()
+                        + this.menuBackground.getDimensions().getHeight() - 150
+        ).plusX(35).plusY(3), "DEPOSIT", 77, 29, this.getParentEngine(), this, ButtonTypeEnum.DEPOSIT);
         initBackgrounds();
         initMenuTexts();
         initStats();
@@ -92,6 +109,13 @@ public class StickScene extends Scene<StickEngine>
         this.getDrawableGroup().addDrawable(dayText);
         this.getDrawableGroup().addDrawable(timeText);
         menuTitle.setVisible(false);
+
+        this.getDrawableGroup().addDrawable(cancel);
+        cancel.setVisible(false);
+        this.getDrawableGroup().addDrawable(withdraw);
+        withdraw.setVisible(false);
+        this.getDrawableGroup().addDrawable(deposit);
+        deposit.setVisible(false);
 
         for(Text<StickEngine> t : stats)
         {
@@ -144,6 +168,8 @@ public class StickScene extends Scene<StickEngine>
             stats.get(1).setFont(statsFont);
             stats.get(2).setFont(statsFont);
             stats.get(3).setFont(statsFont);
+            deposit.setVisible(false);
+            withdraw.setVisible(false);
         }
         else
         {
@@ -815,6 +841,8 @@ public class StickScene extends Scene<StickEngine>
             }
             //Bank
             case LOAN:{
+                deposit.setVisible(false);
+                withdraw.setVisible(false);
                 if(player.loanday == -1)
                 {
                     stats.get(0).setText("You are allowed a loan of $1000.");
@@ -846,16 +874,18 @@ public class StickScene extends Scene<StickEngine>
                 break;
             }
             case BHOUSE:{
-                    menuTitle.setText("Property for sale");
-                    menuTitle.setVisible(true);
-                    if(!player.bApt)
-                        ec.bApt.setVisible(true);
-                    if(!player.penthouse)
-                        ec.penthouse.setVisible(true);
-                    if(!player.mansion)
-                        ec.mansion.setVisible(true);
-                    if(!player.castle)
-                        ec.castle.setVisible(true);
+                deposit.setVisible(false);
+                withdraw.setVisible(false);
+                menuTitle.setText("Property for sale");
+                menuTitle.setVisible(true);
+                if(!player.bApt)
+                    ec.bApt.setVisible(true);
+                if(!player.penthouse)
+                    ec.penthouse.setVisible(true);
+                if(!player.mansion)
+                    ec.mansion.setVisible(true);
+                if(!player.castle)
+                    ec.castle.setVisible(true);
                 break;
             }
             //Home
@@ -1114,6 +1144,8 @@ public class StickScene extends Scene<StickEngine>
                     + (this.getEntityController(StickEntityController.class).player.loanday + 15);
 
             stats.get(3).setText("Current loan status: " + l);
+            deposit.setVisible(true);
+            withdraw.setVisible(true);
         }
         if(backgrounds.get(6).isVisible())
         {

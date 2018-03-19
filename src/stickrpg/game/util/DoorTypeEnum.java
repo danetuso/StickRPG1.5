@@ -1,6 +1,7 @@
 package stickrpg.game.util;
 
 import stickrpg.game.core.StickEntityController;
+import stickrpg.game.core.StickScene;
 import stickrpg.game.drawable.entity.MenuButton;
 
 import java.util.ArrayList;
@@ -124,10 +125,8 @@ public enum DoorTypeEnum
                 ec.bhouse.setPosition(ec.bhouse.getPosition().plusX(28));
                 b2.add(ec.loan);
                 ec.loan.setPosition(ec.loan.getPosition().plusX(77));
-                b2.add(ec.deposit);
-                ec.deposit.setPosition(ec.deposit.getPosition().plusX(35));
-                b2.add(ec.withdraw);
-                ec.withdraw.setPosition(ec.withdraw.getPosition().plusX(48));
+                ((StickScene)ec.getParentScene()).deposit.setVisible(true);
+                ((StickScene)ec.getParentScene()).withdraw.setVisible(true);
                 ec.eb.setPosition(ec.eb.getPosition().plusX(48));
                 if(ec.player.gun)
                 {

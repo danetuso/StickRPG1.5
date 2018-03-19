@@ -16,9 +16,6 @@ public class ButtonText extends Text<StickEngine> {
         this.parent = parent;
     }
 
-    //highlighted: 149 202 255
-    //not highlighted: 18 69 172
-
     @Override
     protected void mouseEntered()
     {

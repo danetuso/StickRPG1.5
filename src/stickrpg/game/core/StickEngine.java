@@ -65,6 +65,16 @@ public class StickEngine extends Engine
                 )
         );
 
+        this.getTextureGroup().addTexture("testRoundedRect", Texture.colorRoundedRectangleTexture(
+                new Color(0,51,153),
+                new Color(74,139,255,255),
+                1,
+                this.getWindowSize().getWidth() / 3 * 2,
+                getWindowSize().getHeight() / 3 * 2,
+                20,
+                20
+        ));
+
         this.getTextureGroup().addTexture("TextBoxBackground",
                 Texture.colorTexture(
                         Color.WHITE,
@@ -152,12 +162,6 @@ public class StickEngine extends Engine
         );
 
         //Buttons
-        this.getTextureGroup().addTexture("Deposit",
-                new Texture("/deposit.png")
-        );
-        this.getTextureGroup().addTexture("Withdraw",
-                new Texture("/withdraw.png")
-        );
         this.getTextureGroup().addTexture("Cancel",
                 new Texture("/cancel.png")
         );

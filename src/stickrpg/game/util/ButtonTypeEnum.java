@@ -74,5 +74,6 @@ public enum ButtonTypeEnum
     LOANACCEPT,
     WNEWS,
     WFITNESS,
-    WDATING;
+    WDATING,
+    CANCEL;
 }

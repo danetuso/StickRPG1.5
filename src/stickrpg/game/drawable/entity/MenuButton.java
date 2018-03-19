@@ -270,33 +270,6 @@ public class MenuButton extends Entity<StickEngine>
                 break;
             }
             //bank
-            case DEPOSIT:{
-                if(!sc.textBox.getText().equals("")) {
-                    sc.textBoxFocused = false;
-                    if (player.money >= Integer.parseInt(sc.textBox.getText().replace(",", ""))) {
-                        player.bankMoney += Integer.parseInt(sc.textBox.getText().replace(",", ""));
-                        player.addMoney(-Integer.parseInt(sc.textBox.getText().replace(",", "")));
-                        sc.stats.get(1).setText("Current Balance: $" + NumberFormat.getNumberInstance(Locale.US).format(player.bankMoney));
-                    }
-                    sc.textBox.setText("0");
-                }
-                break;
-            }
-            case WITHDRAW:{
-
-                if(!sc.textBox.getText().equals(""))
-                {
-                    sc.textBoxFocused = false;
-                    if(player.bankMoney >= Integer.parseInt(sc.textBox.getText().replace(",", "")))
-                    {
-                        player.bankMoney -= Integer.parseInt(sc.textBox.getText().replace(",", ""));
-                        player.addMoney(Integer.parseInt(sc.textBox.getText().replace(",", "")));
-                        sc.stats.get(1).setText("Current Balance: $" + NumberFormat.getNumberInstance(Locale.US).format(player.bankMoney));
-                    }
-                    sc.textBox.setText("0");
-                }
-                break;
-            }
             case LOAN:{
                 sc.textBoxFocused = false;
                 sc.showResponse(ButtonTypeEnum.LOAN);

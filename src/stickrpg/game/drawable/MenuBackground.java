@@ -15,7 +15,8 @@ public class MenuBackground extends Drawable<StickEngine>
         super(layer, engine, scene);
         background = new Image<>(
                 layer,
-                this.getParentEngine().getTextureGroup().getTexture("menuBackground"),
+                //this.getParentEngine().getTextureGroup().getTexture("menuBackground"),
+                this.getParentEngine().getTextureGroup().getTexture("testRoundedRect"),
                 new Vector(
                         (engine.getWindowSize().getWidth()) - (engine.getTextureGroup().getTexture("menuBackground").getWidth() + 5),
                         40

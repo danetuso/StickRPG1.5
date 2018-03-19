@@ -63,8 +63,6 @@ public class StickEntityController extends EntityController<StickEngine>
     //bank
     public MenuButton bhouse;
     public MenuButton loanAccept;
-    public MenuButton deposit;
-    public MenuButton withdraw;
     public MenuButton loan;
     public MenuButton bApt;
     public MenuButton penthouse;
@@ -507,24 +505,6 @@ public class StickEntityController extends EntityController<StickEngine>
                 4
         );
         this.spawnEntity(bhouse);
-
-        deposit = new MenuButton(
-                this.getParentEngine().getTextureGroup().getTexture("Deposit"),
-                this.getParentEngine().getTextureGroup().getTexture("Deposit"),
-                this.getParentScene(),
-                ButtonTypeEnum.DEPOSIT,
-                2
-        );
-        this.spawnEntity(deposit);
-
-        withdraw = new MenuButton(
-                this.getParentEngine().getTextureGroup().getTexture("Withdraw"),
-                this.getParentEngine().getTextureGroup().getTexture("Withdraw"),
-                this.getParentScene(),
-                ButtonTypeEnum.WITHDRAW,
-                6
-        );
-        this.spawnEntity(withdraw);
 
         loan = new MenuButton(
                 this.getParentEngine().spriteSheet.getTexture(11,6),
